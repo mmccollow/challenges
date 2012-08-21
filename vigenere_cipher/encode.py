@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 KEY = 'GLADOS'
-KEYLEN = len(KEY)
 
 def encode(text):
 	pad = _pad_key(len(text))
@@ -9,7 +8,7 @@ def encode(text):
 
 def _letter_cipher(pad_letter, src_letter):
 	# this works for ASCII only
-	offset = 65
+	offset = 65 # 65 = ASCII capital A
 	summed = (ord(pad_letter) - offset) + (ord(src_letter) - offset)
 	if summed > 25: # go past Z, wrap around to A and continue
 		summed -= 26
@@ -22,7 +21,7 @@ def _pad_key(length):
 	pad = ''
 	counter = 0
 	while counter < length:
-		for i in range(0, KEYLEN):
+		for i in range(0, len(KEY)):
 			if counter >= length:
 				break
 			counter += 1

@@ -7,7 +7,7 @@ def encode(text, op='encode'):
 	if op == 'encode':
 		return ''.join(map(_letter_cipher, tuple(pad), tuple(text)))
 	if op == 'decode':
-		return ''.join(map(_letter_uncipher, tuple(pad), tuple(text)))
+		return ''.join(map(_letter_decipher, tuple(pad), tuple(text)))
 
 def decode(text):
 	return encode(text, 'decode')
@@ -20,7 +20,7 @@ def _letter_cipher(pad_letter, src_letter):
 		summed -= 26
 	return chr(summed + offset)
 
-def _letter_uncipher(pad_letter, src_letter):
+def _letter_decipher(pad_letter, src_letter):
 	offset = 65
 	dist = (ord(src_letter) - offset) - (ord(pad_letter) - offset)
 	if dist < 0:
